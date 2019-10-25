@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MatchBackend.iml" filepath="$PROJECT_DIR$/.idea/MatchBackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/matchingBackend.iml" filepath="$PROJECT_DIR$/.idea/matchingBackend.iml" />
     </modules>
   </component>
 </project>
