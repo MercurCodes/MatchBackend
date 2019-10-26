@@ -5,6 +5,7 @@ import json
 
 from matchingBackend import getLoadedData
 from matchingBackend.Enums.Bundeslaender import BUNDESLAND
+from matchingBackend.InformationManagement import getSchool
 from matchingBackend.Model.Fellow import fellowToJSON
 
 school_matrix = {}
@@ -38,19 +39,24 @@ def isFellowInteressting(school, fellow):
     else:
         return False
 
-def calculateValuesRanking():
+def calculateValuesRanking(request):
     response_data = {}
-    school = ""
+    school_id = json.loads(request.body)['id']
+    print(json.loads(request.body)['id'])
+    school = getSchool(school_id)
     user_list = getTopMatchesRanking(school)
-
+    print(user_list)
     response_data['user1'] = fellowToJSON(user_list[1])
     response_data['user2'] = fellowToJSON(user_list[2])
     response_data['user3'] = fellowToJSON(user_list[3])
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-def calculateValuesDistance():
+def calculateValuesDistance(request):
     response_data = {}
-    school = ""
+    school_id = json.loads(request.body)['id']
+    print(json.loads(request.body)['id'])
+    school = getSchool(school_id)
+    print(school)
     user_list = getTopMatchesDistance(school)
 
     response_data['user1'] = fellowToJSON(user_list[1])
@@ -59,16 +65,20 @@ def calculateValuesDistance():
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def getTopMatchesRanking(school):
+    initCalculation()
     return sortAfterRanking(school_matrix[school])
 
 def getTopMatchesDistance(school):
+    initCalculation()
     return sortAfterDistance(school_matrix[school])
 
 def sortAfterRanking(listOfFellows):
-    return listOfFellows.sort(key= lambda x:x.rating)
+    listOfFellows.sort(key= lambda x:x.rating, reverse=True)
+    return listOfFellows
 
 def sortAfterDistance(listOfFellows):
-    return listOfFellows.sort(key= lambda x:x.distance)
+    listOfFellows.sort(key= lambda x:x.distance_rating, reverse=True)
+    return listOfFellows
 
 
 if __name__ == '__main__':

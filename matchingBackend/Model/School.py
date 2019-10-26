@@ -11,6 +11,8 @@ class School():
 
     Priority = 0
 
+    id = ""
+    login = ""
     Stadt = ""
     Bundesland = Bundeslaender.BUNDESLAND.All
     Einsatzbereich = []
@@ -24,6 +26,7 @@ class School():
         matched_fellow.rating = distance_score * distance_score_factor \
                                 + schwerpunkt_score * schwerpunkt_score_factor \
                                 + einsatzbereichs_score * einsatzbereichs_score_factor
+        matched_fellow.distance_rating = distance_score
         return matched_fellow
 
     def calculateEinsatzBereichScore(self, fellow):
@@ -40,10 +43,10 @@ class School():
 
 def SchoolToJSON(school):
     JSONdata = {}
+    JSONdata["id"] = school.id
     JSONdata["Prioritaet"] = school.Priority
     JSONdata["stadt"] = school.Stadt
     JSONdata["Bundesland"] = BundeslandToString(school.Bundesland)
     JSONdata["Einsatzbereich"] = [EinsatzBereichToString(item) for item in school.Einsatzbereich]
     JSONdata["Schwerpunkt"] = EinsatzBereichToString(school.Schwerpunkt)
     return JSONdata
-

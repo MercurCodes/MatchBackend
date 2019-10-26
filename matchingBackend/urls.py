@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from matchingBackend import ValueCalculator
+from matchingBackend import ValueCalculator, InformationManagement
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('valuesRanking/', ValueCalculator.calculateValuesRanking()),
-    path('valuesDistance/', ValueCalculator.calculateValuesDistance()),
-    path('schoolList/', InformationManagement.getSchoolList())
+    path('valuesRanking/', ValueCalculator.calculateValuesRanking),
+    path('valuesDistance/', ValueCalculator.calculateValuesDistance),
+    path('schoolList/', InformationManagement.getSchoolListJSON),
+    path('school/', InformationManagement.getSchoolJSONREST)
 ]

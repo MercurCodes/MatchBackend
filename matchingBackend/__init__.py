@@ -47,6 +47,8 @@ def loadDataFromXLSX():
         school = School()
 
         school.Priority = int(schoolSheet.cell(i, 0).value)
+        school.login = schoolSheet.cell(i, 3).value
+        school.id = schoolSheet.cell(i, 2).value
         school.Stadt = schoolSheet.cell(i, 4).value
         school.Bundesland = StringToBUNDESLAND(schoolSheet.cell(i, 5).value)
         school.Einsatzbereich = [StringToEINSATZBEREICH(item) for item in schoolSheet.cell(i, 6).value.split(';')]
