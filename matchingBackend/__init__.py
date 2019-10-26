@@ -9,7 +9,17 @@ from matchingBackend.Model.School import School, SchoolToJSON
 filenameFellows = "C:/Users/Raphael Kunz/Downloads/Fellowliste.xlsx"
 filenameSchools = "C:/Users/Raphael Kunz/Downloads/Schulliste.xlsx"
 
+fellowList = []
+schoolList = []
+
+def getLoadedData():
+    loadDataFromXLSX()
+    return {"fellows" : fellowList, "schools" : schoolList}
+
 def loadDataFromXLSX():
+    if len(fellowList) != 0 and len(schoolList) != 0:
+        return
+
     fellowBook = xlrd.open_workbook(filenameFellows, encoding_override="utf-8")
     schoolBook = xlrd.open_workbook(filenameSchools, encoding_override="utf-8")
 
@@ -31,7 +41,7 @@ def loadDataFromXLSX():
         fellow.schwerpuntke = [StringToPROGRAMMSCHWERPUNKT(item) for item in fellowSheet.cell(i, 10).value.split(';')]
         fellow.einsatzBereiche = [StringToEINSATZBEREICH(item) for item in fellowSheet.cell(i, 9).value.split(';')]
 
-        print(fellowToJSON(fellow))
+        fellowList.append(fellow)
 
     for i in range(1,schoolSheet.nrows):
         school = School()
@@ -42,8 +52,4 @@ def loadDataFromXLSX():
         school.Einsatzbereich = [StringToEINSATZBEREICH(item) for item in schoolSheet.cell(i, 6).value.split(';')]
         school.Schwerpunkt = [StringToPROGRAMMSCHWERPUNKT(item) for item in schoolSheet.cell(i, 7).value.split(';')]
 
-        print(SchoolToJSON(school))
-
-
-if __name__ == '__main__':
-    loadDataFromXLSX()
+        schoolList.append(school)

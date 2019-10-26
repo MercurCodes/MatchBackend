@@ -20,5 +20,7 @@ from matchingBackend import ValueCalculator
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('values/', ValueCalculator.calculateValues)
+    path('valuesRanking/', ValueCalculator.calculateValuesRanking()),
+    path('valuesDistance/', ValueCalculator.calculateValuesDistance()),
+    path('schoolList/', InformationManagement.getSchoolList())
 ]
