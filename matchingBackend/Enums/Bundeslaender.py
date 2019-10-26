@@ -57,7 +57,7 @@ def StringToBUNDESLAND(string):
     else:
         return BUNDESLAND.All
 
-    def BundeslandToString(item):
+def BundeslandToString(item):
         if item is BUNDESLAND.BadenWuerttemberg:
             return "Baden-Wuerttemberg"
         elif item is BUNDESLAND.Bayern:

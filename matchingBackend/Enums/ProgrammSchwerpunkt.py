@@ -10,7 +10,7 @@ class PROGRAMMSCHWERPUNKT(Enum):
     StarkeBasis = 5
 
 
-def StringToENUM(string):
+def StringToPROGRAMMSCHWERPUNKT(string):
     stringLower = string.lower()
     if "starke basis" in stringLower:
         return PROGRAMMSCHWERPUNKT.StarkeBasis
@@ -18,6 +18,8 @@ def StringToENUM(string):
         return PROGRAMMSCHWERPUNKT.EchteTeilhabe
     elif "neue perspektiven" in stringLower:
         return PROGRAMMSCHWERPUNKT.NeuePerspektiven
+    elif "sicherer " in stringLower:
+        return PROGRAMMSCHWERPUNKT.EinsatzInDerSekundarStufe1
     else:
         return PROGRAMMSCHWERPUNKT.All
 
@@ -28,5 +30,7 @@ def SchwerpunkteToString(item):
         return "Echte Teilhabe"
     elif item is PROGRAMMSCHWERPUNKT.NeuePerspektiven:
         return "Neue Perspektiven"
+    elif item is PROGRAMMSCHWERPUNKT.EinsatzInDerSekundarStufe1:
+        return "Sicherer Uebergang in die Sekundarstufe I"
     else:
         return "Keine Präferenzen"

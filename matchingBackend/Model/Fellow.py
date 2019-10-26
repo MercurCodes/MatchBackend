@@ -1,4 +1,4 @@
-from matchingBackend.Enums.Bundeslaender import BUNDESLAND
+from matchingBackend.Enums.Bundeslaender import BUNDESLAND, BundeslandToString
 from matchingBackend.Enums.Einsatzbereiche import EinsatzBereichToString
 from matchingBackend.Enums.ProgrammSchwerpunkt import SchwerpunkteToString
 
@@ -27,10 +27,12 @@ def fellowToJSON(fellow):
     fellowJson["titel"] = fellow.titel
     fellowJson["accountName"] = fellow.accountName
     fellowJson["Stadt"] = fellow.Stadt
-    fellowJson["Bundesland"] = fellow.Bundesland
+    fellowJson["Bundesland"] = BundeslandToString(fellow.Bundesland)
     fellowJson["Land"] = fellow.Land
-    fellowJson["Bundesland1Wahl"] = fellow.Bundesland1Wahl
-    fellowJson["Bundesland2Wahl"] = fellow.Bundesland2Wahl
-    fellowJson["Bundesland3Wahl"] = fellow.Bundesland3Wahl
+    fellowJson["Bundesland1Wahl"] = BundeslandToString(fellow.Bundesland1Wahl)
+    fellowJson["Bundesland2Wahl"] = BundeslandToString(fellow.Bundesland2Wahl)
+    fellowJson["Bundesland3Wahl"] = BundeslandToString(fellow.Bundesland3Wahl)
     fellowJson["einsatzBereiche"] = [EinsatzBereichToString(item) for item in fellow.einsatzBereiche ]
     fellowJson["schwerpuntke"] = [SchwerpunkteToString(item) for item in fellow.schwerpuntke ]
+
+    return fellowJson
