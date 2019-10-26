@@ -31,6 +31,7 @@ def loadDataFromXLSX():
 
         fellow.titel = fellowSheet.cell(i, 1).value
         fellow.accountName = fellowSheet.cell(i, 2).value
+        fellow.number = fellowSheet.cell(i, 0).value
         fellow.Stadt = fellowSheet.cell(i, 3).value
         fellow.Bundesland = StringToBUNDESLAND(fellowSheet.cell(i, 4).value)
         fellow.Land = fellowSheet.cell(i, 5).value

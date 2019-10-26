@@ -8,6 +8,7 @@ class Fellow():
     distance_rating = 0
     comment = ""
     titel = ""
+    number = ""
     name = ""
     accountName = ""
     Stadt = ""
@@ -23,8 +24,10 @@ class Fellow():
     def deepCopy(self):
         fellow_copy = Fellow()
         fellow_copy.comment = self.comment
+        fellow_copy.accountName = self.accountName
         fellow_copy.titel = self.titel
         fellow_copy.name = self.name
+        fellow_copy.number = self.number
         fellow_copy.Stadt = self.Stadt
         fellow_copy.Bundesland = self.Bundesland
 
@@ -45,6 +48,7 @@ def fellowToJSON(fellow):
     fellowJson["distance_rating"] = fellow.distance_rating
     fellowJson["comment"] = fellow.comment
     fellowJson["titel"] = fellow.titel
+    fellowJson["number"] = fellow.number
     fellowJson["accountName"] = fellow.accountName
     fellowJson["Stadt"] = fellow.Stadt
     fellowJson["Bundesland"] = BundeslandToString(fellow.Bundesland)

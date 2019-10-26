@@ -47,7 +47,7 @@ def getSchoolListJSON(request):
 
         jsonDump.append(schoolJSON)
 
-    return HttpResponse(json.dumps(jsonDump), content_type="application/json")
+    return HttpResponse(json.dumps({"schools" : jsonDump}), content_type="application/json")
 
 
 def getSchoolJSONREST(request):
