@@ -45,6 +45,7 @@ def SchoolToJSON(school):
     JSONdata = {}
     JSONdata["id"] = school.id
     JSONdata["Prioritaet"] = school.Priority
+    JSONdata["login"] = school.login
     JSONdata["stadt"] = school.Stadt
     JSONdata["Bundesland"] = BundeslandToString(school.Bundesland)
     JSONdata["Einsatzbereich"] = [EinsatzBereichToString(item) for item in school.Einsatzbereich]
